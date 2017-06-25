@@ -1,22 +1,22 @@
 
 class DisjointSet:
     def __init__(self):
-        self.tree = {}
+        self.forest = {}
 
     def makeSet(self, x):
-        exist = self.tree.has_key(x)
+        exist = self.forest.has_key(x)
         if not exist:
-            self.tree[x] = {'parent': x, 'rank': 0}
+            self.forest[x] = {'parent': x, 'rank': 0}
 
     def find(self,x):
-        exist = self.tree.has_key(x)
+        exist = self.forest.has_key(x)
         if not exist:
             return None
 
-        if self.tree[x]['parent'] != x:
-            self.tree[x]['parent'] = self.find(self.tree[x]['parent'])
+        if self.forest[x]['parent'] != x:
+            self.forest[x]['parent'] = self.find(self.forest[x]['parent'])
 
-        return self.tree[x]['parent']
+        return self.forest[x]['parent']
 
     def union(self, x, y):
         xroot = self.find(x)
@@ -25,13 +25,13 @@ class DisjointSet:
         if xroot == yroot:
             return
 
-        if self.tree[xroot]['rank'] < self.tree[yroot]['rank']:
-            self.tree[xroot]['parent'] = yroot
-        elif self.tree[xroot]['rank'] > self.tree[yroot]['rank']:
-            self.tree[yroot]['parent'] = xroot
+        if self.forest[xroot]['rank'] < self.forest[yroot]['rank']:
+            self.forest[xroot]['parent'] = yroot
+        elif self.forest[xroot]['rank'] > self.forest[yroot]['rank']:
+            self.forest[yroot]['parent'] = xroot
         else:
-            self.tree[yroot]['parent'] = xroot
-            self.tree[xroot]['rank'] = self.tree[xroot]['rank'] + 1
+            self.forest[yroot]['parent'] = xroot
+            self.forest[xroot]['rank'] = self.forest[xroot]['rank'] + 1
 
 
 
