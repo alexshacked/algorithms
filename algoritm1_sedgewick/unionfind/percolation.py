@@ -5,11 +5,11 @@ class Percolation:
         self._sites = [ [False  for i in range(N)] for i in range(N)]
         self.uf = UF(N*N+2)
 
-        # root of upper layer -> node idx N*N
+        # root of lower layer -> node idx N*N
         for i in range(N):
             idx = self._2dim_to_1dim(N-1, i)
             self.uf.union(N*N, idx)
-        # root of lower layer > node idx N*N+1
+        # root of upper layer > node idx N*N+1
         for i in range(N):
             idx = self._2dim_to_1dim(0, i)
             self.uf.union(N*N+1, idx)
