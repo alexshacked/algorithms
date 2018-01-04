@@ -35,16 +35,26 @@ class Percolation:
             self.uf.union(idx, front)
 
     def isOpen(self, row, col):
-        pass
+        row -= 1
+        col -= 1
+        return self._sites[row][col] == True
 
     def isFull(self, row, col):
-        pass
+        row -= 1
+        col -= 1
+        if not self._sites[row][col]:
+            return False
+        w = self._width()
+        idx = self._2dim_to_1dim(row, col)
+        return self.uf.connected(idx, w*w + 1)
 
     def numberOfOpenSites(self):
-        pass
+        open = [ 1  for i in self._sites for j in i if j == True]
+        return sum(open)
 
     def percolates(self):
-        pass
+        w = self._width()
+        return self.uf.connected(w*w, w*w+1)
 
     def _width(self):
         return len(self._sites[0])
@@ -92,3 +102,4 @@ if __name__ == '__main__':
     per.open(2,4)
     per.open(3,4)
     per._show_sites()
+    print(per.numberOfOpenSites())
