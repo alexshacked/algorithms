@@ -1,5 +1,9 @@
 import time
 
+
+# Interview question at Radband October 2018
+# Problem description (aproximately): design a scheduler that receive at init time several event and their frequencies.
+# When started, the scheduler begin triggering the events respecting their frequencies
 class Node:
     def __init__(self, val, freq):
         self.val = val
