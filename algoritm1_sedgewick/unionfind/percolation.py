@@ -87,8 +87,9 @@ class Percolation:
 
 
 if __name__ == '__main__':
-    per = Percolation(5)
-    per._show_sites()
-    per.open(2,4)
-    per.open(3,4)
+    per = Percolation(4)
+    per.open(1, 1)
+    per.open(2, 2)
+    per.open(3, 3)
+    per.open(4, 4)
     per._show_sites()
